@@ -192,7 +192,30 @@ nav{background:var(--brown);position:sticky;top:0;z-index:1000;box-shadow:0 2px 
 .user-menu-item.danger{color:#e05252}
 .user-menu-item.danger:hover{background:#fff3f3}
 .nav-user-wrap{position:relative}
-.hero{background:linear-gradient(135deg,var(--brown) 0%,#5a3d28 50%,var(--green) 100%);padding:72px 24px;text-align:center;position:relative;overflow:hidden}
+/* ===== HERO SWIPE BANNER ===== */
+.hero-banner{position:relative;width:100%;overflow:hidden;border-radius:24px;margin-bottom:40px;box-shadow:0 8px 40px rgba(0,0,0,0.18);}
+.hero-banner-track{display:flex;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);will-change:transform}
+.hero-banner-slide{min-width:100%;position:relative;overflow:hidden}
+.hero-banner-slide img{width:100%;height:380px;object-fit:cover;display:block}
+.hero-banner-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:40px 48px}
+.hero-banner-overlay.hbo-dark{background:linear-gradient(90deg,rgba(26,18,8,0.88) 0%,rgba(26,18,8,0.4) 60%,transparent 100%)}
+.hero-banner-overlay.hbo-green{background:linear-gradient(90deg,rgba(45,90,61,0.9) 0%,rgba(45,90,61,0.4) 60%,transparent 100%)}
+.hero-banner-overlay.hbo-amber{background:linear-gradient(90deg,rgba(200,112,42,0.9) 0%,rgba(200,112,42,0.4) 60%,transparent 100%)}
+.hbo-tag{display:inline-block;background:rgba(255,255,255,0.2);color:white;padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;width:fit-content}
+.hbo-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.6rem);color:white;line-height:1.2;margin-bottom:10px;max-width:480px}
+.hbo-title em{color:var(--amber-light);font-style:italic}
+.hbo-desc{color:rgba(255,255,255,0.75);font-size:0.95rem;max-width:400px;margin-bottom:20px;line-height:1.5}
+.hbo-btn{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:white;border:none;cursor:pointer;padding:12px 26px;border-radius:30px;font-size:0.88rem;font-weight:600;font-family:'DM Sans',sans-serif;transition:all 0.25s;width:fit-content}
+.hbo-btn:hover{background:var(--amber-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,112,42,0.4)}
+.hero-banner-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.hbdot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.3s;border:none}
+.hbdot.active{background:white;width:28px;border-radius:10px}
+.hero-banner-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.2);color:white;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:all 0.25s;z-index:10}
+.hero-banner-arrow:hover{background:rgba(255,255,255,0.3);transform:translateY(-50%) scale(1.08)}
+.hero-banner-arrow.hba-left{left:14px}
+.hero-banner-arrow.hba-right{right:14px}
+
+.hero{background:linear-gradient(135deg,var(--brown) 0%,#5a3d28 50%,var(--green) 100%);padding:72px 24px 56px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E")}
 .hero-badge{display:inline-block;background:var(--amber);color:white;padding:6px 18px;border-radius:30px;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);color:var(--cream);line-height:1.15;margin-bottom:16px}
@@ -203,10 +226,22 @@ nav{background:var(--brown);position:sticky;top:0;z-index:1000;box-shadow:0 2px 
 .btn-primary:hover{background:var(--amber-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,112,42,0.4)}
 .btn-outline{background:transparent;color:white;border:2px solid rgba(255,255,255,0.35);cursor:pointer;padding:12px 28px;border-radius:40px;font-size:0.95rem;font-weight:500;font-family:'DM Sans',sans-serif;transition:all 0.25s}
 .btn-outline:hover{border-color:white;background:rgba(255,255,255,0.08)}
-.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:52px}
+.hero-stats{display:flex;gap:40px;justify-content:center;margin-top:36px}
 .stat{text-align:center;color:rgba(255,255,255,0.8)}
 .stat strong{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;color:white}
 .stat span{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;opacity:0.7}
+
+@media(max-width:768px){
+  .hero-banner-slide img{height:240px}
+  .hero-banner-overlay{padding:24px 28px}
+  .hbo-title{font-size:1.3rem}
+  .hero-banner-arrow{width:36px;height:36px;font-size:14px}
+}
+@media(max-width:480px){
+  .hero-banner-slide img{height:200px}
+  .hero-banner-overlay{padding:18px 20px}
+  .hbo-desc{display:none}
+}
 .section{max-width:1300px;margin:0 auto;padding:56px 24px}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px}
 .section-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--brown)}
@@ -395,7 +430,9 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:48px 24px 28px
 <div id="authGate">
   <div class="auth-box">
     <div class="auth-header">
-      <div class="auth-logo">🛍️</div>
+      <div class="auth-logo">
+        <img src="./logotip.png" alt="">
+      </div>
       <h1>Humoyun <span style="color:var(--amber-light)">Market</span></h1>
       <p>O'zbekistonning zamonaviy onlayn bozori</p>
     </div>
@@ -562,8 +599,10 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:48px 24px 28px
   <nav>
     <div class="nav-inner">
       <a class="logo" href="#">
-        <div class="logo-icon">🛍️</div>
-        <div class="logo-text">Humoyun <span>Market</span></div>
+        <div class="logo-icon">
+            <img src="./logotip.png" style="width: 90px; border-radius: 10%;" alt="">
+        </div>
+        <div class="logo-text" style="padding-left: 30px;">Humoyun <span>Market</span></div>
       </a>
       <div class="nav-search">
         <span class="search-icon">🔍</span>
@@ -591,6 +630,57 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:48px 24px 28px
   </nav>
 
   <section class="hero">
+     <!-- SWIPE BANNER -->
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-banner-track" id="bannerTrack">
+        <!-- Slayd 1 -->
+        <div class="hero-banner-slide">
+          <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=1300&h=400&fit=crop" alt="Kiyim Kolleksiyasi">
+          <div class="hero-banner-overlay hbo-dark">
+            <span class="hbo-tag">🔥 Chegirma</span>
+            <h3 class="hbo-title">Kuz Kolleksiyasi <em>50% gacha</em> chegirma</h3>
+            <p class="hbo-desc">Zamonaviy kuzgi kiyimlar eng yaxshi narxlarda faqat Humoyun Market'da!</p>
+            <button class="hbo-btn" onclick="filterCategory('erkaklar-kiyim')">Ko'rish → 🛍️</button>
+          </div>
+        </div>
+        <!-- Slayd 2 -->
+        <div class="hero-banner-slide">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1300&h=400&fit=crop" alt="Elektronika">
+          <div class="hero-banner-overlay hbo-green">
+            <span class="hbo-tag">⚡ Yangilik</span>
+            <h3 class="hbo-title">Smartfonlar va <em>Gadjetlar</em></h3>
+            <p class="hbo-desc">So'nggi model telefonlar, quloqchinlar va aksessuarlar yetkazib beriladi!</p>
+            <button class="hbo-btn" onclick="filterCategory('electronics')">Tanlash → 📱</button>
+          </div>
+        </div>
+        <!-- Slayd 3 -->
+        <div class="hero-banner-slide">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1300&h=400&fit=crop" alt="Oziq-Ovqat">
+          <div class="hero-banner-overlay hbo-amber">
+            <span class="hbo-tag">🥗 Sog'lom Hayot</span>
+            <h3 class="hbo-title">Yangi Organik <em>Oziq-Ovqat</em></h3>
+            <p class="hbo-desc">Tog' asalidan tortib organik mevagacha — tabiatdan to'g'ridan-to'g'ri!</p>
+            <button class="hbo-btn" onclick="filterCategory('oziq-ovqat')">Buyurtma → 🥬</button>
+          </div>
+        </div>
+        <!-- Slayd 4 -->
+        <div class="hero-banner-slide">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1300&h=400&fit=crop" alt="Ayollar Kiyimi">
+          <div class="hero-banner-overlay hbo-dark">
+            <span class="hbo-tag">💃 Moda</span>
+            <h3 class="hbo-title">Ayollar Kiyim <em>Kolleksiyasi</em></h3>
+            <p class="hbo-desc">Nafis va zamonaviy ko'ylaklar, jinsilar va aksessuarlar!</p>
+            <button class="hbo-btn" onclick="filterCategory('ayollar-kiyim')">Ko'rish → 👗</button>
+          </div>
+        </div>
+      </div>
+      <!-- O'q tugmalari -->
+      <button class="hero-banner-arrow hba-left" onclick="bannerSlide(-1)">❮</button>
+      <button class="hero-banner-arrow hba-right" onclick="bannerSlide(1)">❯</button>
+      <!-- Nuqtalar -->
+      <div class="hero-banner-dots" id="bannerDots"></div>
+    </div>
+
     <div class="hero-badge">🎉 Yangi Mahsulotlar Keldi!</div>
     <h1>O'zbekistonning eng<br><em>zamonaviy</em> onlayn bozori</h1>
     <p>Kiyim-kechakdan tortib oziq-ovqatgacha — hamma narsa bir joyda.</p>
@@ -598,6 +688,9 @@ footer{background:var(--dark);color:rgba(255,255,255,0.7);padding:48px 24px 28px
       <button class="btn-primary" onclick="scrollToProducts()">🛍️ Xarid Boshlash</button>
       <button class="btn-outline" onclick="scrollToProducts()">Barcha Mahsulotlar →</button>
     </div>
+
+   
+
     <div class="hero-stats">
       <div class="stat"><strong>5,000+</strong><span>Mahsulot</span></div>
       <div class="stat"><strong>12K+</strong><span>Mamnun Xaridor</span></div>
@@ -1354,6 +1447,110 @@ function showToast(msg) {
 document.getElementById('searchInput').addEventListener('input',function(){ searchQuery=this.value; filterAndRender(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){closeModalDirect();closeCart();closeOrderModal();} });
 document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&document.getElementById('orderOverlay').classList.contains('open')) submitOrder(); });
+
+// ===== SWIPE BANNER LOGIC =====
+let bannerIndex = 0;
+let bannerCount = 0;
+let bannerTimer = null;
+let bannerTouchStartX = 0;
+let bannerTouchEndX = 0;
+
+function initBanner() {
+  const track = document.getElementById('bannerTrack');
+  if (!track) return;
+  bannerCount = track.children.length;
+  if (bannerCount === 0) return;
+
+  // Nuqtalarni yaratish
+  const dotsContainer = document.getElementById('bannerDots');
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < bannerCount; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'hbdot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToBanner(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  // Touch/swipe qo'llab-quvvatlash
+  const banner = document.getElementById('heroBanner');
+  banner.addEventListener('touchstart', e => {
+    bannerTouchStartX = e.changedTouches[0].screenX;
+    stopBannerAuto();
+  }, {passive: true});
+  banner.addEventListener('touchend', e => {
+    bannerTouchEndX = e.changedTouches[0].screenX;
+    const diff = bannerTouchStartX - bannerTouchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) bannerSlide(1);   // Chapga surdi → keyingi
+      else bannerSlide(-1);            // O'ngga surdi → oldingi
+    }
+    startBannerAuto();
+  }, {passive: true});
+
+  // Mouse drag qo'llab-quvvatlash
+  let mouseStartX = 0;
+  let isDragging = false;
+  banner.addEventListener('mousedown', e => {
+    mouseStartX = e.clientX;
+    isDragging = true;
+    stopBannerAuto();
+  });
+  banner.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+  });
+  banner.addEventListener('mouseup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diff = mouseStartX - e.clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) bannerSlide(1);
+      else bannerSlide(-1);
+    }
+    startBannerAuto();
+  });
+  banner.addEventListener('mouseleave', () => {
+    if (isDragging) {
+      isDragging = false;
+      startBannerAuto();
+    }
+  });
+
+  // Hover da to'xtash
+  banner.addEventListener('mouseenter', stopBannerAuto);
+  banner.addEventListener('mouseleave', startBannerAuto);
+
+  startBannerAuto();
+}
+
+function goToBanner(idx) {
+  bannerIndex = idx;
+  const track = document.getElementById('bannerTrack');
+  track.style.transform = `translateX(-${bannerIndex * 100}%)`;
+  // Nuqtalarni yangilash
+  document.querySelectorAll('.hbdot').forEach((d, i) => {
+    d.classList.toggle('active', i === bannerIndex);
+  });
+}
+
+function bannerSlide(dir) {
+  bannerIndex += dir;
+  if (bannerIndex >= bannerCount) bannerIndex = 0;
+  if (bannerIndex < 0) bannerIndex = bannerCount - 1;
+  goToBanner(bannerIndex);
+}
+
+function startBannerAuto() {
+  stopBannerAuto();
+  bannerTimer = setInterval(() => bannerSlide(1), 4500);
+}
+
+function stopBannerAuto() {
+  if (bannerTimer) { clearInterval(bannerTimer); bannerTimer = null; }
+}
+
+// Sahifa yuklanganda bannerni ishga tushirish
+document.addEventListener('DOMContentLoaded', initBanner);
 
 // ===== BOOT =====
 if (currentUser) {
